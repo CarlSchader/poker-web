@@ -1,0 +1,17 @@
+version: "3.5"
+
+services:
+  poker-web:
+    build: .
+    ports:
+      - target: 80
+        published: 80
+    environment:
+    - PORT=80
+    - API_URL=http://poker-api
+    networks:
+      - poker-frontend
+
+networks:
+  poker-frontend:
+    external: true

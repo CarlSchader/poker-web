@@ -1,0 +1,52 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Poker App</title>
+  <meta name="description" content="An api for poker hand stats">
+  <meta name="author" content="Carl Schader">
+
+  <meta property="og:title" content="An api for poker hand stats">
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:url" content="https://www.sitepoint.com/a-basic-html5-template/"> -->
+  <meta property="og:description" content="An api for poker hand stats">
+  <!-- <meta property="og:image" content="image.png"> -->
+
+  <!-- <link rel="icon" href="/favicon.ico"> -->
+  <!-- <link rel="icon" href="/favicon.svg" type="image/svg+xml"> -->
+  <!-- <link rel="apple-touch-icon" href="/apple-touch-icon.png"> -->
+
+  <link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+  <h1>Poker API</h1>
+  <label for="game">Game</label>
+  <select onchange="onChangeCardCount()" name="game" id="game">
+    <option value="7">Texas Holdem</option>
+    <option value="5">Five Card</option>
+  </select>
+  <br><br>
+
+  <button onclick="addCard()" type="button">Add to hand</button><br><br>
+  <div id="cards"></div><br><br>
+  <br><br><br>
+
+  <button onclick="addShared()" type="button">Add to shared</button><br><br>
+  <div id="shared"></div><br><br>
+  <br><br>
+
+  <button hidden onclick="sendRequest()" type="button" id="calculate">Calculate</button>
+  <br><br><br>
+
+  <div id="results" hidden>
+    <h3>Results</h3>
+    <p style="white-space: pre" id="json"></p>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
