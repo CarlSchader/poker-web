@@ -11,9 +11,9 @@ WORKDIR /build
 
 COPY --from=builder /src/ .
 
-ENV PORT=80
+ENV PORT=8080
 ENV API_URL=http://poker-api
 
-EXPOSE 80
+EXPOSE 8080
 
 ENTRYPOINT ["node", "src/index.js"]
