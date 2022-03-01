@@ -16,4 +16,4 @@ ENV API_URL=http://poker-api
 
 EXPOSE 8080
 
-ENTRYPOINT ["node", "src/index.js"]
+CMD ["node", "src/index.js"]
