@@ -3,7 +3,7 @@ WORKDIR /src
 COPY . /src
 RUN npm install
 
-FROM alpine as final
+FROM alpine@sha256:e7d88de73db3d3fd9b2d63aa7f447a10fd0220b7cbf39803c803f2af9ba256b3 as final
 
 RUN apk add --update nodejs
 
@@ -16,4 +16,4 @@ ENV API_URL=http://poker-api
 
 EXPOSE 8080
 
-CMD ["node", "src/index.js"]
+ENTRYPOINT ["node", "src/index.js"]

@@ -1,0 +1,8 @@
+node_modules
+kubernetes
+docker
+.git
+.gitignore
+docker-compose.yml
+LICENSE
+README.md
