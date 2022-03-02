@@ -4,7 +4,7 @@ metadata:
   name: poker-web
 spec:
   containers:
-    - image: carlschader/poker-web:amd
+    - image: carlschader/poker-web-amd:latest
       name: poker-web
       livenessProbe:
         httpGet:
