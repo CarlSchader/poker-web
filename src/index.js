@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(process.cwd(), 'src', 'public', 'index.html'));
 });
 
-app.get('/', (req, res) => {
+app.get('/health', (req, res) => {
     res.sendStatus(200);
 });
 
