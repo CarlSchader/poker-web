@@ -1,33 +1,17 @@
 apiVersion: apps/v1
-
 kind: Deployment
-
 metadata:
   labels:
     app: poker-web
   name: poker-web
   namespace: default
-
 spec:
-  progressDeadlineSeconds: 600
-  
-  replicas: 2
-  
-  revisionHistoryLimit: 10
-  
+  replicas: 1
   selector:
     matchLabels:
       app: poker-web
-  
-  strategy:
-    rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
-    type: RollingUpdate
-  
   template:
     metadata:
-      creationTimestamp: null
       labels:
         app: poker-web
     spec:
@@ -36,7 +20,9 @@ spec:
           name: poker-web
           env:
             - name: PORT
-              value: 80
+              value: "80"
+            - name: API_URL
+              value: http://poker-api.default.svc.cluster.local
           livenessProbe:
             httpGet:
               path: /health
@@ -45,13 +31,14 @@ spec:
             timeoutSeconds: 5
             periodSeconds: 60
             failureThreshold: 3
-          readinessProbe:
-            httpGet:
-              path: /health
-              port: 80
-            initialDelaySeconds: 5
-            periodSeconds: 5
-            failureThreshold: 3
+          # readinessProbe:
+          #   httpGet:
+          #     path: /health
+          #     port: 80
+          #   initialDelaySeconds: 5
+          #   periodSeconds: 5
+          #   failureThreshold: 3
+          #   successThreshold: 1
           ports:
             - containerPort: 80
               name: http
