@@ -3,6 +3,9 @@ USERNAME = carlschader
 run:
 	docker compose -f docker/docker-compose.yaml up --build
 
+kill:
+	docker compose -f docker/docker-compose.yaml down
+
 build:
 	docker build -t poker-web:latest -f docker/Dockerfile .
 
