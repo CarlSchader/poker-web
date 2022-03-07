@@ -42,7 +42,7 @@ services:
       - REDIS_PORT=6379
 
   redis:
-    image: redis:alpine
+    image: redis
     ports:
       - target: 6379
         published: 6379
