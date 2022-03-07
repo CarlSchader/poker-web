@@ -1,21 +1,23 @@
+USERNAME = carlschader
+
 run:
 	docker compose -f docker/docker-compose.yaml up --build
 
 build:
-	docker build -t carlschader/poker-web -f docker/Dockerfile .
+	docker build -t poker-web:latest -f docker/Dockerfile .
 
 publish:
 	docker login
 
-	docker build -t carlschader/poker-web:arm -f docker/Dockerfile-arm .
-	docker build -t carlschader/poker-web:amd -f docker/Dockerfile-amd .
+	docker build -t ${USERNAME}/poker-web:arm -f docker/Dockerfile-arm .
+	docker build -t ${USERNAME}/poker-web:amd -f docker/Dockerfile-amd .
 
-	docker push carlschader/poker-web:arm
-	docker push carlschader/poker-web:amd
+	docker push ${USERNAME}/poker-web:arm
+	docker push ${USERNAME}/poker-web:amd
 	
 	docker manifest create \
-	carlschader/poker-web:latest \
-	carlschader/poker-web:arm \
-	carlschader/poker-web:amd
+	${USERNAME}/poker-web:latest \
+	--amend ${USERNAME}/poker-web:arm \
+	--amend ${USERNAME}/poker-web:amd
 
-	docker manifest push carlschader/poker-web:latest
+	docker manifest push ${USERNAME}/poker-web:latest
