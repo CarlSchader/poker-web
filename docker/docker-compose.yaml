@@ -3,7 +3,7 @@ version: "3.5"
 services:
   poker-web:
     build:
-      context: .
+      context: ../
       dockerfile: docker/Dockerfile
     depends_on:
       - poker-api

@@ -1,8 +1,8 @@
 node_modules
 kubernetes
 docker
+Makefile
 .git
 .gitignore
-docker-compose.yml
 LICENSE
 README.md
