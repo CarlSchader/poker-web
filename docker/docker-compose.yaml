@@ -18,7 +18,7 @@ services:
 
 
   poker-api:
-    image: carlschader/poker-api:latest
+    image: carlschader/poker-api
     depends_on:
       - redis
     networks:
@@ -32,7 +32,7 @@ services:
         published: 8080
 
   populate-redis:
-    image: carlschader/poker-populate-redis:latest
+    image: carlschader/poker-populate-redis
     depends_on:
       - redis
     networks:

@@ -16,7 +16,7 @@ spec:
         app: poker-web
     spec:
       containers:
-        - image: carlschader/poker-web-amd:latest
+        - image: carlschader/poker-web:latest
           name: poker-web
           env:
             - name: PORT
@@ -31,14 +31,6 @@ spec:
             timeoutSeconds: 5
             periodSeconds: 60
             failureThreshold: 3
-          # readinessProbe:
-          #   httpGet:
-          #     path: /health
-          #     port: 80
-          #   initialDelaySeconds: 5
-          #   periodSeconds: 5
-          #   failureThreshold: 3
-          #   successThreshold: 1
           ports:
             - containerPort: 80
               name: http
