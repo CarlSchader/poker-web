@@ -1,26 +1,24 @@
-USERNAME = carlschader
+DOCKER_HUB_USERNAME = carlschader
+SERVICE_NAME = poker-web
 
 run:
-	docker compose -f docker/docker-compose.yaml up --build
+	docker-compose up --build
 
 kill:
-	docker compose -f docker/docker-compose.yaml down
+	docker-compose down
 
 build:
-	docker build -t poker-web:latest -f docker/Dockerfile .
+	docker build -t poker-web:latest .
 
 publish:
 	docker login
+	docker run --privileged --rm tonistiigi/binfmt --install all
+	docker buildx create --use --name ${SERVICE_NAME}
 
-	docker build -t ${USERNAME}/poker-web:arm -f docker/Dockerfile-arm .
-	docker build -t ${USERNAME}/poker-web:amd -f docker/Dockerfile-amd .
+	docker buildx build \
+	--push \
+	--platform linux/amd64,linux/arm/v7,linux/arm64/v8,linux/ppc64le,linux/s390x \
+	--tag ${DOCKER_HUB_USERNAME}/${SERVICE_NAME}:latest .
 
-	docker push ${USERNAME}/poker-web:arm
-	docker push ${USERNAME}/poker-web:amd
-	
-	docker manifest create \
-	${USERNAME}/poker-web:latest \
-	--amend ${USERNAME}/poker-web:arm \
-	--amend ${USERNAME}/poker-web:amd
-
-	docker manifest push ${USERNAME}/poker-web:latest
+	docker buildx stop ${SERVICE_NAME}
+	docker buildx rm ${SERVICE_NAME}

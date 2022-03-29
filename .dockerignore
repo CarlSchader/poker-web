@@ -1,6 +1,5 @@
 node_modules
 kubernetes
-docker
 Makefile
 .git
 .gitignore
