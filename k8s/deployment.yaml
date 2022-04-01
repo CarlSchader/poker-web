@@ -22,7 +22,7 @@ spec:
             - name: PORT
               value: "80"
             - name: API_URL
-              value: http://poker-api.default.svc.cluster.local
+              value: http://poker-go-api.default.svc.cluster.local
           livenessProbe:
             httpGet:
               path: /health
