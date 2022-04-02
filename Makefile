@@ -1,5 +1,6 @@
 DOCKER_HUB_USERNAME = carlschader
 SERVICE_NAME = poker-web
+ARCHES = linux/amd64,linux/arm64/v8
 
 run:
 	docker-compose -f docker/docker-compose.yaml up --build
@@ -17,7 +18,7 @@ publish:
 
 	docker buildx build \
 	--push \
-	--platform linux/amd64,linux/arm/v7,linux/arm64/v8,linux/ppc64le,linux/s390x \
+	--platform ${ARCHES} \
 	--tag ${DOCKER_HUB_USERNAME}/${SERVICE_NAME}:latest \
 	-f docker/Dockerfile .
 
