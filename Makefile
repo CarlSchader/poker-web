@@ -1,6 +1,8 @@
 DOCKER_HUB_USERNAME = carlschader
 SERVICE_NAME = poker-web
 ARCHES = linux/amd64,linux/arm64/v8
+DOCKERFILE_PATH = services/server/Dockerfile
+DOCKER_CONTEXT = .
 
 run:
 	docker-compose -f docker/docker-compose.yaml up --build
@@ -20,7 +22,7 @@ publish:
 	--push \
 	--platform ${ARCHES} \
 	--tag ${DOCKER_HUB_USERNAME}/${SERVICE_NAME}:latest \
-	-f docker/Dockerfile .
+	-f ${DOCKERFILE_PATH} ${DOCKER_CONTEXT}
 
 	docker buildx stop ${SERVICE_NAME}
 	docker buildx rm ${SERVICE_NAME}
