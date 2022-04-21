@@ -6,7 +6,7 @@ require('dotenv').config();
 
 process.on('SIGTERM', _ => process.exit(0));
 
-const PORT = process.env.PORT || 80;
+const PORT = process.env.PORT || 8080;
 const API_URL = process.env.API_URL || 'http://localhost:3000';
 
 app = express();

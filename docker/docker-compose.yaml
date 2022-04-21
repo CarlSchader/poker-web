@@ -12,47 +12,56 @@ services:
         published: 80
     environment:
     - PORT=80
-    - API_URL=http://poker-api:8080
+    - API_URL=http://poker-go-api:8080
     networks:
       - backend
 
 
   poker-api:
-    image: carlschader/poker-api
+    image: carlschader/poker-go-api
     depends_on:
-      - redis
+      - mongo
+      - create-ranks
     networks:
       - backend
     environment:
       - PORT=8080
-      - REDIS_HOST=redis
-      - REDIS_PORT=6379
+      - MONGODB_URI=mongodb://mongo:27017
+      - DB_NAME=poker
+      - RANKS_COLLECTION_NAME=ranks
+      - CACHE_COLLECTION_NAME=cache
+      - CALCULATION_TIMEOUT=120
     ports:
       - target: 8080
         published: 8080
-
-  populate-redis:
-    image: carlschader/poker-populate-redis
+  
+  create-ranks:
+    image: carlschader/poker-create-ranks
     depends_on:
-      - redis
+      - mongo
     networks:
       - backend
     environment:
-      - REDIS_HOST=redis
-      - REDIS_PORT=6379
-
-  redis:
-    image: redis
+      - MONGODB_URI=mongodb://mongo:27017
+      - DB_NAME=poker
+      - RANKS_COLLECTION_NAME=ranks
+      - CACHE_COLLECTION_NAME=cache
+      - BATCHES=1
+  
+  mongo:
+    image: mongo
     ports:
-      - target: 6379
-        published: 6379
+      - target: 27017
+        published: 27017
     networks:
       - backend
     volumes:
-      - redis:/data
+      - mongo:/data/db
+
+
 
 networks:
   backend:
 
 volumes:
-  redis:
+  mongo:

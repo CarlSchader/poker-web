@@ -24,29 +24,211 @@
 </head>
 
 <body>
-  <h1>Poker API</h1>
-  <label for="game">Game</label>
-  <select onchange="onChangeCardCount()" name="game" id="game">
+  <h1>River Rat</h1>
+  <!-- <label for="game">Game</label> -->
+  <!-- <select onchange="onChangeCardCount()" name="game" id="game">
     <option value="7">Texas Holdem</option>
     <option value="5">Five Card</option>
   </select>
-  <br><br>
+  <br><br> -->
 
-  <button onclick="addCard()" type="button">Add to hand</button><br><br>
+  <!-- <button onclick="addCard()" type="button">Add to hand</button><br><br>
   <div id="cards"></div><br><br>
-  <br><br><br>
+  <br><br><br> -->
 
-  <button onclick="addShared()" type="button">Add to shared</button><br><br>
+  <!-- <button onclick="addShared()" type="button">Add to shared</button><br><br>
   <div id="shared"></div><br><br>
-  <br><br>
+  <br><br> -->
 
-  <button hidden onclick="sendRequest()" type="button" id="calculate">Calculate</button>
+  <input onclick="toggleFlop()" type="button" id="flop-button" value="Flop" />
+  <input onclick="toggleTurn()" hidden type="button" id="turn-button" value="Turn" />
+  <input onclick="toggleRiver()" hidden type="button" id="river-button" value="River" />
+
+  <div id="pocket">
+    <h4>Pocket</h4>
+    <label for="pocket-card-1">Card 1</label>
+    <select name="pocket-card-1" id="pocket-val-1">
+        <option value="A">A</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="J">J</option>
+        <option value="Q">Q</option>
+        <option value="K">K</option>
+    </select>
+    <select id="pocket-suit-1">
+        <option value="c">&clubs;</option>
+        <option value="d">&diams;</option>
+        <option value="h">&hearts;</option>
+        <option value="s">&spades;</option>
+    </select>
+
+    <label for="pocket-card-2">Card 2</label>
+    <select name="pocket-card-2" id="pocket-val-2">
+        <option value="A">A</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="J">J</option>
+        <option value="Q">Q</option>
+        <option value="K">K</option>
+    </select>
+    <select id="pocket-suit-2">
+        <option value="c">&clubs;</option>
+        <option value="d">&diams;</option>
+        <option value="h">&hearts;</option>
+        <option value="s">&spades;</option>
+    </select>
+  </div>
+
+
+
+  <div hidden id="flop">
+    <h4>Flop</h4>
+    <label for="flop-card-1">Card 1</label>
+    <select name="flop-card-1" id="flop-val-1">
+        <option value="A">A</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="J">J</option>
+        <option value="Q">Q</option>
+        <option value="K">K</option>
+    </select>
+    <select id="flop-suit-1">
+        <option value="c">&clubs;</option>
+        <option value="d">&diams;</option>
+        <option value="h">&hearts;</option>
+        <option value="s">&spades;</option>
+    </select>
+
+    <label for="flop-card-2">Card 2</label>
+    <select name="flop-card-2" id="flop-val-2">
+        <option value="A">A</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="J">J</option>
+        <option value="Q">Q</option>
+        <option value="K">K</option>
+    </select>
+    <select id="flop-suit-2">
+        <option value="c">&clubs;</option>
+        <option value="d">&diams;</option>
+        <option value="h">&hearts;</option>
+        <option value="s">&spades;</option>
+    </select>
+
+    <label for="flop-card-3">Card 3</label>
+    <select name="flop-card-3" id="flop-val-3">
+        <option value="A">A</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="J">J</option>
+        <option value="Q">Q</option>
+        <option value="K">K</option>
+    </select>
+    <select id="flop-suit-3">
+        <option value="c">&clubs;</option>
+        <option value="d">&diams;</option>
+        <option value="h">&hearts;</option>
+        <option value="s">&spades;</option>
+    </select>
+  </div>
+
+
+
+  <div hidden id="turn">
+    <h4>Turn</h4>
+    <label for="turn-card">Card</label>
+    <select name="turn-card" id="turn-val">
+        <option value="A">A</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="J">J</option>
+        <option value="Q">Q</option>
+        <option value="K">K</option>
+    </select>
+    <select id="turn-suit">
+        <option value="c">&clubs;</option>
+        <option value="d">&diams;</option>
+        <option value="h">&hearts;</option>
+        <option value="s">&spades;</option>
+    </select>
+  </div>
+
+  <div hidden id="river">
+    <h4>River</h4>
+    <label for="river-card">Card</label>
+    <select name="turn-card" id="river-val">
+        <option value="A">A</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="J">J</option>
+        <option value="Q">Q</option>
+        <option value="K">K</option>
+    </select>
+    <select id="river-suit">
+        <option value="C">&clubs;</option>
+        <option value="D">&diams;</option>
+        <option value="H">&hearts;</option>
+        <option value="S">&spades;</option>
+    </select>
+  </div>
+
+  <button onclick="sendRequest()" type="button" id="calculate">Calculate</button>
   <br><br><br>
 
   <div id="results" hidden>
     <h3>Results</h3>
     <p style="white-space: pre" id="json"></p>
   </div>
-  <script src="script.js"></script>
+  <!-- <script src="script.js"></script> -->
+  <script src="holdem.js"></script>
 </body>
 </html>
