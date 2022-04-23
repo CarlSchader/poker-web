@@ -67,13 +67,13 @@ function sendRequest() {
         }
     }
     if (turnActivated) {
-        let val = document.getElementById(`turn-val-${i}`).value;
-        let suit = document.getElementById(`turn-suit-${i}`).value;
+        let val = document.getElementById(`turn-val`).value;
+        let suit = document.getElementById(`turn-suit`).value;
         shared.push(val+suit);
     }
     if (riverActivated) {
-        let val = document.getElementById(`river-val-${i}`).value;
-        let suit = document.getElementById(`river-suit-${i}`).value;
+        let val = document.getElementById(`river-val`).value;
+        let suit = document.getElementById(`river-suit`).value;
         shared.push(val+suit);
     }
     

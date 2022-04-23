@@ -6,7 +6,7 @@ services:
       context: ../
       dockerfile: docker/Dockerfile
     depends_on:
-      - poker-api
+      - poker-go-api
     ports:
       - target: 80
         published: 80
@@ -17,8 +17,8 @@ services:
       - backend
 
 
-  poker-api:
-    image: carlschader/poker-go-api
+  poker-go-api:
+    image: carlschader/poker-go-api:latest
     depends_on:
       - mongo
       - create-ranks
@@ -36,7 +36,7 @@ services:
         published: 8080
   
   create-ranks:
-    image: carlschader/poker-create-ranks
+    image: carlschader/poker-create-ranks:latest
     depends_on:
       - mongo
     networks:
@@ -48,6 +48,17 @@ services:
       - CACHE_COLLECTION_NAME=cache
       - BATCHES=1
   
+  create-pockets:
+    image: carlschader/poker-create-pockets:latest
+    depends_on:
+      - mongo
+    networks:
+      - backend
+    environment:
+      - MONGODB_URI=mongodb://mongo:27017
+      - DB_NAME=poker
+      - POCKETS_COLLECTION_NAME=pockets
+
   mongo:
     image: mongo
     ports:
