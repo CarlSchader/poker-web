@@ -25,20 +25,8 @@
 
 <body>
   <h1>River Rat</h1>
-  <!-- <label for="game">Game</label> -->
-  <!-- <select onchange="onChangeCardCount()" name="game" id="game">
-    <option value="7">Texas Holdem</option>
-    <option value="5">Five Card</option>
-  </select>
-  <br><br> -->
-
-  <!-- <button onclick="addCard()" type="button">Add to hand</button><br><br>
-  <div id="cards"></div><br><br>
-  <br><br><br> -->
-
-  <!-- <button onclick="addShared()" type="button">Add to shared</button><br><br>
-  <div id="shared"></div><br><br>
-  <br><br> -->
+  
+  <p>This is a small web app that can calculate statistics for Texas Holdem hands and caches the results for fast retrieval later. The project was built to learn kubernetes and the focus was on backend infrastructure (hence the awful UI). The backend, frontend, and database are all hosted in kubernetes using Google Kubernetes Engine. See source for the <a href="https://github.com/carlschader/poker-go-api">api and database</a> and the <a href="https://github.com/carlschader/poker-web">web server</a>.</p>
 
   <input onclick="toggleFlop()" type="button" id="flop-button" value="Flop" />
   <input onclick="toggleTurn()" hidden type="button" id="turn-button" value="Turn" />
