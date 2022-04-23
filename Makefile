@@ -1,7 +1,7 @@
 DOCKER_HUB_USERNAME = carlschader
 SERVICE_NAME = poker-web
 ARCHES = linux/amd64,linux/arm64/v8
-DOCKERFILE_PATH = services/server/Dockerfile
+DOCKERFILE_PATH = docker/Dockerfile
 DOCKER_CONTEXT = .
 
 run:
